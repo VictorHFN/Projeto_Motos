@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:appcrudsqlite/data/bd.dart';
+import 'package:appcrudsqlite/data/BdVHMotos.dart';
 
 import 'package:appcrudsqlite/screens/edit.dart';
 
@@ -16,7 +16,7 @@ class ListBooks extends StatefulWidget {
 class _ListBooks extends State<ListBooks> {
   List<Map> slist = [];
 
-  MyDb mydb = MyDb();
+  DbVHMotos mydb = DbVHMotos();
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _ListBooks extends State<ListBooks> {
     Future.delayed(Duration(milliseconds: 500), () async {
       //use delay min 500 ms, because database takes time to initilize.
 
-      slist = await mydb.db.rawQuery('SELECT * FROM books');
+      slist = await mydb.db.rawQuery('SELECT * FROM motos');
 
       setState(() {}); //refresh UI after getting data from table.
     });
@@ -41,12 +41,12 @@ class _ListBooks extends State<ListBooks> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de Books Cadastrados"),
+        title: Text("Lista de Motos Cadastrados"),
       ),
       body: SingleChildScrollView(
         child: Container(
           child: slist.length == 0
-              ? Text("Carregando Livros")
+              ? Text("Carregando Motos")
               : //show message if there is no any student
 
               Column(
@@ -56,8 +56,8 @@ class _ListBooks extends State<ListBooks> {
                     return Card(
                       child: ListTile(
                         leading: Icon(Icons.people),
-                        title: Text(stuone["title"]),
-                        subtitle: Text("Roll No:" +
+                        title: Text(stuone["Modelo"]),
+                        subtitle: Text("Codigo:" +
                             stuone["roll_no"].toString() +
                             ", Preço: " +
                             stuone["price"]),
@@ -65,16 +65,16 @@ class _ListBooks extends State<ListBooks> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  Navigator.push(context, MaterialPageRoute(
-                                      builder: (BuildContext context) {
-                                    return EditBook(rollno: stuone["roll_no"]);
-                                  })); //navigate to edit page, pass student roll no to edit
+                                 // Navigator.push(context, MaterialPageRoute(
+                                   //   builder: (BuildContext context) {
+                                   // return EditBook(rollno: stuone["roll_no"]);
+                                 // })); //navigate to edit page, pass student roll no to edit
                                 },
                                 icon: Icon(Icons.edit)),
                             IconButton(
                                 onPressed: () async {
                                   await mydb.db.rawDelete(
-                                      "DELETE FROM books WHERE roll_no = ?",
+                                      "DELETE FROM motos WHERE roll_no = ?",
                                       [stuone["roll_no"]]);
 
                                   //delete student data with roll no.
@@ -82,7 +82,7 @@ class _ListBooks extends State<ListBooks> {
                                   print("Data Deleted");
 
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("Book Apagado!")));
+                                      SnackBar(content: Text("Motos Apagado!")));
 
                                   getdata();
                                 },

@@ -56,11 +56,11 @@ class _ListMotos extends State<ListMotos> {
                     return Card(
                       child: ListTile(
                         leading: Icon(Icons.people),
-                        title: Text(stuone["Modelo"]),
-                        subtitle: Text("Codigo:" +
+                        title: Text(stuone["modelo"]),
+                        subtitle: Text("Código:" +
                             stuone["roll_no"].toString() +
                             ", Preço: " +
-                            stuone["price"]),
+                            stuone["valor"].toString()),
                         trailing: Wrap(
                           children: [
                             IconButton(

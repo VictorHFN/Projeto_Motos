@@ -6,14 +6,14 @@ import 'package:appcrudsqlite/data/BdVHMotos.dart';
 
 import 'package:appcrudsqlite/screens/edit.dart';
 
-class ListBooks extends StatefulWidget {
+class ListMotos extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _ListBooks();
+    return _ListMotos();
   }
 }
 
-class _ListBooks extends State<ListBooks> {
+class _ListMotos extends State<ListMotos> {
   List<Map> slist = [];
 
   DbVHMotos mydb = DbVHMotos();
@@ -82,7 +82,7 @@ class _ListBooks extends State<ListBooks> {
                                   print("Data Deleted");
 
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("Motos Apagado!")));
+                                      SnackBar(content: Text("Moto Deletada!")));
 
                                   getdata();
                                 },

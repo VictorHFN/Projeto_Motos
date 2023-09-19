@@ -18,7 +18,7 @@ class DbVHMotos {
       // When creating the db, create the table
 
       await db.execute(''' 
-                  CREATE TABLE IF NOT EXISTS books (  
+                  CREATE TABLE IF NOT EXISTS motos (  
                         id primary key, 
                         marca varchar(255) not null, 
                         modelo varchar(255) not null, 

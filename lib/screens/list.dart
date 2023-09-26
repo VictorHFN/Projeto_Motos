@@ -65,10 +65,10 @@ class _ListMotos extends State<ListMotos> {
                           children: [
                             IconButton(
                                 onPressed: () {
-                                 // Navigator.push(context, MaterialPageRoute(
-                                   //   builder: (BuildContext context) {
-                                   // return EditBook(rollno: stuone["roll_no"]);
-                                 // })); //navigate to edit page, pass student roll no to edit
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return EditMotos(rollno: stuone["roll_no"]);
+                                  })); //navigate to edit page, pass student roll no to edit
                                 },
                                 icon: Icon(Icons.edit)),
                             IconButton(
@@ -82,7 +82,8 @@ class _ListMotos extends State<ListMotos> {
                                   print("Data Deleted");
 
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text("Moto Deletada!")));
+                                      SnackBar(
+                                          content: Text("Moto Deletada!")));
 
                                   getdata();
                                 },

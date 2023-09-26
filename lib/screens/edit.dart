@@ -16,13 +16,13 @@ class EditMotos extends StatefulWidget {
 class _EditMotos extends State<EditMotos> {
   TextEditingController marca = TextEditingController();
 
+  TextEditingController roll_no = TextEditingController();
+
   TextEditingController modelo = TextEditingController();
 
   TextEditingController cilindrada = TextEditingController();
 
   TextEditingController valor = TextEditingController();
-
-  TextEditingController roll_no = TextEditingController();
 
   DbVHMotos mydb = new DbVHMotos();
 
@@ -31,19 +31,19 @@ class _EditMotos extends State<EditMotos> {
     mydb.open();
 
     Future.delayed(Duration(milliseconds: 500), () async {
-      var data = await mydb.getBooks(
+      var data = await mydb.getMotos(
           widget.rollno); //widget.rollno is passed paramater to this class
 
       if (data != null) {
-        marca.text = data["Marca"];
+        marca.text = data["marca"];
 
-        modelo.text = data["Modelo"].toString();
+        roll_no.text = data["roll_no"].toString();
 
-        cilindrada.text = data["CC"];
+        modelo.text = data["modelo"];
 
-        valor.text = data["Valor"];
+        cilindrada.text = data["cilindrada"].toString();
 
-        roll_no.text = data["Código"];
+        valor.text = data["valor"].toString();
 
         setState(() {});
       } else {
@@ -71,27 +71,27 @@ class _EditMotos extends State<EditMotos> {
                 ),
               ),
               TextField(
+                controller: roll_no,
+                decoration: InputDecoration(
+                  hintText: "rollno",
+                ),
+              ),
+              TextField(
                 controller: modelo,
                 decoration: InputDecoration(
-                  hintText: "Módelo.",
+                  hintText: "Modelo.",
                 ),
               ),
               TextField(
                 controller: cilindrada,
                 decoration: InputDecoration(
-                  hintText: "Cc",
+                  hintText: "Cilindrada",
                 ),
               ),
               TextField(
                 controller: valor,
                 decoration: InputDecoration(
                   hintText: "Valor",
-                ),
-              ),
-              TextField(
-                controller: roll_no,
-                decoration: InputDecoration(
-                  hintText: "rollno",
                 ),
               ),
               ElevatedButton(

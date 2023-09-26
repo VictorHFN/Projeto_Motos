@@ -37,9 +37,9 @@ class DbVHMotos {
 
   //método de consulta de dados
 
-  Future<Map<dynamic, dynamic>?> getBooks(int rollno) async {
+  Future<Map<dynamic, dynamic>?> getMotos(int rollno) async {
     List<Map> maps =
-        await db.query('books', where: 'roll_no = ?', whereArgs: [rollno]);
+        await db.query('motos', where: 'roll_no = ?', whereArgs: [rollno]);
     //getting student data with roll no.
     if (maps.length > 0) {
       return maps.first;
